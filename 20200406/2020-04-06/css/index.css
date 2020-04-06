@@ -1,0 +1,22 @@
+.container {
+	padding: 0;
+}
+.box .navbar .navbar-brand{
+    font-size: 30px;
+}
+.box .navbar-nav li a{
+    font-size: 15px;
+}
+.productBox{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px auto;
+}
+.productBox .card{
+    width: 19.2%;
+    margin-right: 0.3%;
+    margin-left: 0.5%;
+}
+.productBox .card:nth-child(5n+5) {
+	margin-right: 0;
+}
