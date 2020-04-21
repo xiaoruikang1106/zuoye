@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #box{
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            transition: left 2s ease-in-out /*opacity 3s 2s 0.2 ease-out*/;
+            /*opacity 第一个是过渡时间 第二个是延迟时间*/
+        }
+    </style>
+</head>
+<body>
+    <div id="box" ></div>
+</body>
+    <script>
+        let box = document.getElementById('box')
+        // console.log(box)
+        // let TT = document.getElementById('box').style.opacity
+        let fadeIn = function fadeIn(){
+            box.onclick = function (){
+                // this.style.opacity = 0.1
+                let TT = 0
+                let step = ((1-0.2)/(1000 / 100));
+                let timer = setInterval(() => {
+                    TT += step;
+                    if(TT > 1 ){
+                        TT = 1;
+                        clearInterval(timer)
+                    }
+                    box.style.opacity = TT;    
+                },100);
+            }
+        }   
+        fadeIn();    
+    </script>
+    <!-- <script>
+        function fadeIn(ele,time=1000){
+            //time 我们总共用的时长
+            //time/10 函数执行次数
+            //0到1 (1-0)/(time/10) 步长
+            let opa = 0;
+            let step = (1-0)/(time/10);
+            let timer = setInterval(()=>{
+                opa += step
+                if(opa >1){
+                    opa = 1;
+                    clearInterval(timer)
+                }
+                ele.style.opacity = opa
+            },10)
+        }
+        box.onclick = function(){
+            fadeIn(this)
+        }
+    </script> -->
+</html>

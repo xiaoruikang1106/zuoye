@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./1.css"> -->
+    <style>
+        #box{
+           width: 100px;
+           height: 100px;
+           background-color: brown;
+           opacity: 0;
+           position: absolute;
+           left: 0;
+           transition: left 2s ease-in-out /*opacity 3s 2s 0.2 ease-out*/;
+           /*opacity 第一个是过渡时间 第二个是延迟时间*/
+       }
+   </style>
+    <style>
+        #box{
+           width: 100px;
+           height: 100px;
+           background-color: brown;
+           opacity: 1;
+           
+           left: 100px;
+            /*opacity 3s 2s 0.2 ease-out*/;
+           /*opacity 第一个是过渡时间 第二个是延迟时间*/
+        }
+   </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>
+<script>
+    let box = document.querySelector('#box');
+    function move(ele,attr,duration,target){
+        //elel 要动的元素 attr要动的属性 duration是运动时长 target是目标位置
+        //次数 duration/10
+        //目标位置 - 当前初始位置 = 要移动距离
+        //要移动的距离/次数 = 步长
+        let start = parseFloat(getComputedStyle(ele)[attr]);//stat当前属性初始值 初始位置
+        let step = (target - start)/(duration)//速度(步长)= 距离/时间
+        let time = 0//记录运动时长封顶是duration
+        let timer = setInterval( function() {
+            time += 10;
+            ele.style[attr] = time
+            if(time >duration){
+                tike = duration
+                clearInterval(timer)
+            }
+            console.log(step,time)
+            ele.style[attr] = time*step + start +'px'
+        },10);
+    };
+    move(box,'left',1000,500);//把left 属性增加到五百的位置，用时1000ms
+    //move(box,'opacity',1000,0.5);//把opacity 属性增加到0.5的，用时1000ms
+</script> 

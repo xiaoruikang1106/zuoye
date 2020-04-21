@@ -1,0 +1,41 @@
+#box{
+  width: 100px;
+  height: 100px;
+  background-color: salmon;
+  animation: turnRound 1s linear infinite;
+  &:hover{
+    // & 代表当前的父元素
+    // animation:move123 2s;
+    animation-play-state: paused;//滑过停止
+  }
+  &.stop{
+    // & 代表当前的父元素
+    // animation:move123 2s;
+    animation-play-state: paused;//滑过停止
+  }
+
+}
+// animation   动画
+// transition  过渡
+
+@keyframes move123{
+  0%{
+    // from{} 
+    // to {}
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes turnRound{
+    0%{
+      transform: rotate(0);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+}

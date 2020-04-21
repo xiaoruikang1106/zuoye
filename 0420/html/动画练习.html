@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+            
+            position: absolute;
+            left: 0;
+            transition: left 2s ease-in-out opacity 3s 2s 0.2 ease-out;
+            /*opacity 第一个是过渡时间 第二个是延迟时间*/
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        let box = document.querySelector('#box')
+        let left = 0;
+        let HTML = document.documentElement.clientWidth - box.offsetWidth ;
+        //box.onclick = function (){
+            //this.style.left = '500px'
+            //向右移动没个20秒移动1px，一直到五百px；到地方之后清除定时器
+            /*let timer= setInterval(() =>{
+                left +=3;
+                if(left > 500){
+                    left = 500;//不是正好的时候就让他等于五百
+                    clearInterval(timer)
+                }
+                this.style.left = left + 'px'
+            },20)*/
+            
+            /*box.onclick = function () {
+                //box.styLe.Left = ' 500px';
+                //box. styLe.opacity = '.3'; 
+                let timer = setInterval(() => {
+                    left++;
+                    // if (Left >= 300) return;
+                    if ( left > HTML){
+                        left = HTML;
+                        clearInterval(timer) ;
+                    }
+                   this.style.left = left + 'px' ;
+                },20);
+            }*/
+        box.onclick = function (){
+            let f = () =>{
+                left ++;
+                if(left > HTML){
+                    left = HTML;
+                }
+                this.style.left = left + 'px' ;
+                setTimeout(() =>{
+                    left === HTML ? null : f();// 当到达右边界时 停止递归执行；
+                },20);
+            }
+            f();
+        }
+        /*window.onresize = function (){
+            //当可视窗口的大小发生窗口改变的时候，会触发这个函数
+            HTML = document.documentElement.clientWidth - box.offsetWidth ;
+        }*/
+
+    </script>
+</body>
+</html>

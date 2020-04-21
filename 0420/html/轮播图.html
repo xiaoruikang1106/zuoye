@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./6.css">
+</head>
+<body>
+    <div id="box"><!--  box是可视窗口 -->
+        <ul class="list"><!--  ul是一个长条形状 -->
+            <li>
+                <img src="https://bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/eb8f0263c48090160f9b9bc3fd4a3648.jpg" alt="">
+            </li>
+            <li>
+                <img src="https://bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/53caa16963462f85452963256f2fbce3.jpg" alt="">
+            </li>
+            <li><img src="https://bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/7a252584150962528ae3c5ebec79d879.jpeg" alt=""></li>
+            <li><img src="https://bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/cdfa6895790628319536807a47e90494.jpg" alt=""></li>
+            <li><img src="https://img0.qidian.com/upload/gamesy/2020/03/23/20200323155131zscpykxvrc.jpg" alt=""></li>
+            <li><img src="https://bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/eb8f0263c48090160f9b9bc3fd4a3648.jpg" alt="">
+            </li>
+        </ul>
+        <div class="btn_box">
+            <div class="left_btn"></div>
+            <div class="right_btn"></div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    let ul = document.querySelector('ul')
+    let start = 0;
+    let timer = null;
+    let left = document.querySelector('left_btn')
+    let right = document.querySelector('right_btn')
+    function move(){
+        timer = setInterval(()=>{
+            start -= 600
+            //let start = parseFloat(getComputedStyle(ul).left)
+            // ul.style.left = start - 600 +'px'
+            if(start < -3000){
+                //小于等于负的3000 说明图片已经轮播完了，需要回到初始
+                //-3000的时候显示的是伪第一张，走到这里伪第一张和第一张要走俩个1.5秒会明显感觉时间变长
+                start = 0 
+                ul.style.transition = 'none';//改为none  就没有往回倒的效果
+                ul.style.transform = `translateX(${start}px)`;//直接闪到第一张
+                //闪到第六张之后，紧接着往后走就是第二张，而不是再等1.5秒
+                let lang = ul.offsetHeight;
+                //分离读写 这一步骤是为了让浏览器读一次数据之后，会让浏览器重新渲染一遍
+                start = -600;
+                ul.style.transition = 'all 0.3s';
+            }else{
+                ul.style.transition = 'all 0.3s';
+            }
+            ul.style.transform = `translateX(${start}px)`;
+        },1000)
+    }
+    move();
+    /*let timer = setInterval(()=>{
+        start -= 600
+        //let start = parseFloat(getComputedStyle(ul).left)
+        // ul.style.left = start - 600 +'px'
+        if(start < -3000){
+            //小于等于负的3000 说明图片已经轮播完了，需要回到初始
+            //-3000的时候显示的是伪第一张，走到这里伪第一张和第一张要走俩个1.5秒会明显感觉时间变长
+            start = 0 
+            ul.style.transition = 'none';//改为none  就没有往回倒的效果
+            ul.style.transform = `translateX(${start}px)`;//直接闪到第一张
+            //闪到第六张之后，紧接着往后走就是第二张，而不是再等1.5秒
+            let lang = ul.offsetHeight;
+            //分离读写 这一步骤是为了让浏览器读一次数据之后，会让浏览器重新渲染一遍
+            start = -600;
+            ul.style.transition = 'all 0.3s';
+        }else{
+            ul.style.transition = 'all 0.3s';
+        }
+        ul.style.transform = `translateX(${start}px)`;
+    },1000)*/
+    //滑过盒子清除计时器
+    box.onmouseenter = function (){
+        clearInterval(timer);
+    }
+    //离开盒子计时器重新开始
+    box.onmouseleave = function(){
+        move()
+    }
+</script>

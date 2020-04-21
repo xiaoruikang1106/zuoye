@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+            
+            position: absolute;
+            left: 0;
+            transition: left 2s ease-in-out opacity 3s 2s 0.2 ease-out;
+            /*opacity 第一个是过渡时间 第二个是延迟时间*/
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        let box = document.querySelector('#box')
+        let left = 0;
+        let max = document.documentElement.clientWidth - box.offsetWidth ;
+        box.onclick = function (){
+            let step = Math.round(max/(1000/10));
+            let timer = setInterval(() => {
+                left += step;
+                if(left > max){
+                    left = max;
+                    clearInterval(timer)
+                }
+                this.style.left = left +'px';
+            },10);
+        }
+    </script>
+</body>
+</html>

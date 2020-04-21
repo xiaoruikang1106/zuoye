@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="1.css">
+    <!-- <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            animation: turnRound 1s linear infinite;
+        }
+        /*#box:hover{
+                // & 代表当前的父元素
+                // animation:move123 2s;
+            animation-play-state: paused;
+        }*/
+        @keyframes move123{
+            0%{
+                /*// from{} 
+                // to {}*/
+                opacity: 1;
+            }
+            50%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        @keyframes turnRound{
+            0%{
+            transform: rotate(0);
+            }
+            100%{
+            transform: rotate(360deg);
+            }
+        }
+    </style> -->
+</head>
+<body>
+    <div id="box">珠峰</div>
+</body>
+<script>
+    let box = document.querySelector('#box')
+    box.onclick = function(){
+        this.classList.toggle('stop')
+    }
+</script>
+<!-- <script>
+    let box = document.querySelector('#box');
+    let flag = -1;
+    box.onclick = function(){
+        //flag === -1 ?this.style.animationPlayState = 'paused':this.style.animationPlayState = 'running';
+        //this.style.animationPlayState = flag === -1 ?'paused':'running';
+        // flag *= -1;
+        //getComputedStyle(元素).属性 //
+        if(this.style.animationPlayState == 'paused'){
+            this.style.animationPlayState = 'running'
+        }else{
+            this.style.animationPlayState == 'paused'
+        }
+    }
+</script>  -->
+</html>
